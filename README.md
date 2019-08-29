@@ -2,7 +2,7 @@
 
 ## 概要
 - 和訳版
-    - https://doc.rust-jp.rs/the-rust-programming-language-ja/1.6/book/
+    - https://doc.rust-jp.rs/the-rust-programming-language-ja/1.9/book/
 - 原文
     - https://doc.rust-lang.org/book/
 
@@ -14,5 +14,4 @@
 |  2 | 2019/8/8 | 木田さん | 3.1数宛ゲームのの途中〜3.2. 食事する哲学者まで
 |  3 | 2019/8/15 | - | 雑談ベースで実際にRustでCLIツールを作ってみた感想などを共有
 |  4 | 2019/8/22 | 八幡 | 4.1.変数束縛、4.2.関数、4.3.プリミティブ型、4.4.コメントまで
-
-
+|  5 | 2019/8/29 | 山谷 | 4.5. if 4.6. ループ (ここから1.9版を使用)
