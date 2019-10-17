@@ -1,0 +1,8 @@
+[package]
+name = "comumnicator-2015"
+version = "0.1.0"
+authors = ["Yoshihito Hirakawa <hirakawa.yoshihito@classmethod.jp>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
