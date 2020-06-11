@@ -29,12 +29,13 @@ fn references() {
         Point { x: 10, y: -3 },
     ];
 
-    let sum_of_squares: i32 = points
+    let _sum_of_squares: i32 = points
         .iter()
         .map(|&Point { x, y }| x * x + y * y)
         .sum();
 }
 
+#[allow(dead_code)]
 fn ref_on_match() {
     let robot_name = Some(String::from("Bors"));
 
@@ -46,6 +47,7 @@ fn ref_on_match() {
     println!("robot_name is: {:?}", robot_name);
 }
 
+#[allow(dead_code)]
 fn optional_on_for() {
     let v = vec![Some('a'), Some('b'), Some('c')];
 
@@ -54,6 +56,7 @@ fn optional_on_for() {
     }
 }
 
+#[allow(dead_code)]
 fn assign_tuple() {
     let (x, y, z) = (1, 2, 3);
     println!("x={}, y={}, z={}", x, y, z);
@@ -62,6 +65,7 @@ fn assign_tuple() {
     println!("x={}, y={}, z={}", t.0, t.1, t.2);
 }
 
+#[allow(dead_code)]
 fn match_range() {
     let x = 'c';
 
@@ -69,19 +73,73 @@ fn match_range() {
         // ASCII文字前半
         //  ..
         //  ... (..=)
-        'a' .. 'j' => println!("early ASCII letter"),
+        'a' ..= 'j' => println!("early ASCII letter"),
         // ASCII文字後半
-        'c' .. 'z' => println!("late ASCII letter"),
+        'c' ..= 'z' => println!("late ASCII letter"),
         // それ以外
         _ => println!("something else"),
     }
 }
 
+#[allow(dead_code)]
+fn match_ref() {
+    let robot_name = Some(String::from("Bors"));
+
+    match robot_name {
+        Some(ref name) => println!("Found a name: {}", name),
+        None => (),
+    }
+
+    println!("robot_name is: {:?}", robot_name);
+}
+
+#[allow(dead_code)]
+fn partial_match() {
+    let numbers = (2, 4, 8, 16, 32);
+
+    match numbers {
+        (_, second, ..) => {
+            println!("second: {}", second);
+        },
+    }
+}
+
+fn match_using_atmark() {
+    enum Message {
+        Hello { id: i32 },
+    }
+
+    let msg = Message::Hello { id: 5 };
+
+    match msg {
+        // Message::Hello { id: id_variable @ 3...7 } => {
+        //     // 範囲内のidが見つかりました: {}
+        //     println!("Found an id in range: {}", id_variable)
+        // },
+        Message::Hello { id } if (3..=7).contains(&id) => {
+            // それ以外のidが見つかりました
+            println!("Found an id in range: {}", id)
+        },
+        Message::Hello { id: 10...12 } => {
+            // 別の範囲内のidが見つかりました
+            println!("Found an id in another range")
+        },
+        Message::Hello { id } => {
+            // それ以外のidが見つかりました
+            println!("Found some other id: {}", id)
+        },
+    }
+}
+
 fn main() {
-    shadowing();
+    //shadowing();
     //references();
     //optional_on_for();
 
     // assign_tuple();
-    match_range();
+    // match_range();
+    //  match_ref();
+    // partial_match();
+
+    match_using_atmark();
 }
